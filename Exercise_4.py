@@ -20,7 +20,7 @@ with open("Data points.txt", "r") as file:
 listData = textData.split()
 data1 = []
 data2 = []
-for i in range(2,len(listData),2):
+for i in range(2,len(listData),2): # Skip the first two lines
     data1.append(float(listData[i]))
     data2.append(float(listData[i+1]))
 

@@ -19,6 +19,7 @@ def inBetween(v, Tuple):
     array = np.array(tempList)
     return array
 
+
 input1 = np.array([1,2,3,4])
-tup = (2,4)
+tup = (2,2)
 print(inBetween(input1, tup))

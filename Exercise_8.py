@@ -26,7 +26,24 @@ def distance(t, velocity):
 
 def mean(inputList):
 
-    return sum(inputList)/len(inputList)
+    if len(inputList) > 0: 
+        
+
+        return sum(inputList)/len(inputList)
+
+    else:
+        # you also need to take into account that there could be 
+        # no vehicle of that category in the list
+
+        return 0
+
+
+
+def computeEmissions(vehicle, t):
+
+    dist = distance(t, vehicle.velocity)
+    return vehicle.emissions(dist)
+
 
 
 def averages(vehicles, t, verbose = False):
@@ -42,26 +59,22 @@ def averages(vehicles, t, verbose = False):
         if vehicle.type == "Car" and vehicle.electric:
             
             # Emissions for EVs
-            dist = distance(t, vehicle.velocity)
-            emissionsEV.append(vehicle.emissions(dist))
+            emissionsEV.append(computeEmissions(vehicle, t))
 
         elif vehicle.type == "Truck" and vehicle.electric:
 
             # Emissions for ETs
-            dist = distance(t, vehicle.velocity)
-            emissionsET.append(vehicle.emissions(dist))
+            emissionsET.append(computeEmissions(vehicle, t))
 
         elif vehicle.type == "Car" and not(vehicle.electric):
 
             # Emissions for ICVs
-            dist = distance(t, vehicle.velocity)
-            emissionsICV.append(vehicle.emissions(dist))
+            emissionsICV.append(computeEmissions(vehicle, t))
 
         elif vehicle.type == "Truck" and not(vehicle.electric):
             
             # Emissions for ICTs
-            dist = distance(t, vehicle.velocity)
-            emissionsICT.append(vehicle.emissions(dist))
+            emissionsICT.append(computeEmissions(vehicle, t))
 
 
     averageEV = mean(emissionsEV)
